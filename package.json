@@ -1,6 +1,6 @@
 {
   "name": "deadlock-detector",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "detect cycles in service calls using graph coloring",
   "main": "index.js",
   "scripts": {
@@ -12,9 +12,9 @@
   },
   "keywords": [
     "javascript",
-    "file",
-    "react",
-    "download"
+    "deadlock",
+    "graph",
+    "Orchestartor"
   ],
   "author": "VenkteshV <venkkratos@gmail.com>",
 
