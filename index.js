@@ -14,7 +14,7 @@ const Equal = (parents,node) => {
     })
     return result;
 }
-const depthFirstSearch = (node,edges,parents,visited,cycles) => {
+const depthFirstSearch = (services,node,edges,parents,visited,cycles) => {
     var state = visited[node] || '';
     if (state == states.Visited)
     return;
@@ -25,12 +25,11 @@ const depthFirstSearch = (node,edges,parents,visited,cycles) => {
     }
     }
     else
-    {
-        
+    {   
         visited[node] = states.Visiting;
         parents.push(node);
         _.forEach(services[node],(child) => {
-            depthFirstSearch(child, edges, parents, visited, cycles);
+            depthFirstSearch(services,child, edges, parents, visited, cycles);
             
         });
         
@@ -39,14 +38,15 @@ const depthFirstSearch = (node,edges,parents,visited,cycles) => {
         visited[node] = states.Visited;
     }
 }
-export const findCycles = (services) => {
+ const findCycles = (services) => {
     const nodes = Object.keys(services);
     var visited = {};
     var parents = new Array();
     var cycles = new Array();
     _.forEach(nodes,(node) => {
         const edges = services[node];
-        depthFirstSearch(node,edges,parents,visited,cycles);
+        depthFirstSearch(services,node,edges,parents,visited,cycles);
     })
     return cycles;
 };
+module.exports=findCycles;
